@@ -55,6 +55,9 @@ class FrmLog {
 	}
 
 	public static function prepare_for_output( $value ) {
+		if ( is_array( $value ) ) {
+			$value = implode( $value, "\r\n" );
+		}
 		$value = str_replace( array( '":"', '","', '{', '},' ), array( '": "', '", "', "\r\n{\r\n", "\r\n},\r\n" ), $value );
 		return wpautop( strip_tags( $value ) );
 	}
