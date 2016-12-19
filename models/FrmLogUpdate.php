@@ -3,9 +3,9 @@
 class FrmLogUpdate extends FrmAddon {
 
 	public $plugin_file;
-	public $plugin_name = 'Logging';
+	public $plugin_name = 'Logs';
 	public $download_id = 11927748;
-	public $version = '1.0';
+	public $version = '1.0b1';
 
 	public function __construct() {
 		$this->plugin_file = dirname( dirname( __FILE__ ) ) . '/formidable-logs.php';

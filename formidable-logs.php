@@ -2,7 +2,7 @@
 /*
 Plugin Name: Formidable Logs
 Description: Log events from Formidable and other add-ons
-Version: 1.0
+Version: 1.0b1
 Plugin URI: http://formidablepro.com/
 Author URI: http://formidablepro.com/
 Author: Strategy11
