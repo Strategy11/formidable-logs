@@ -46,8 +46,6 @@ class FrmLog {
 				} else {
 					$value = json_encode( $value, true );
 				}
-			} else {
-			
 			}
 		}
 
@@ -55,11 +53,34 @@ class FrmLog {
 	}
 
 	public static function prepare_for_output( $value ) {
-		if ( is_array( $value ) ) {
-			$value = implode( $value, "\r\n" );
-		}
+		$value = self::flatten_array( $value );
 		$value = str_replace( array( '":"', '","', '{', '},' ), array( '": "', '", "', "\r\n{\r\n", "\r\n},\r\n" ), $value );
 		return wpautop( strip_tags( $value ) );
+	}
+
+	/**
+	 * Flatten a variable that may be multi-dimensional array
+	 *
+	 * @since 1.0
+	 * @param mixed $original_value
+	 *
+	 * @return string
+	 */
+	private static function flatten_array( $original_value ) {
+		if ( ! is_array( $original_value ) ) {
+			return $original_value;
+		}
+
+		$final_value = '';
+		foreach ( $original_value as $current_value ) {
+			if ( is_array( $current_value ) ) {
+				$final_value .= self::flatten_array( $current_value );
+			} else {
+				$final_value .= "\r\n" . $current_value;
+			}
+		}
+
+		return $final_value;
 	}
 
 	private static function maybe_decode( $value ) {
